@@ -5,7 +5,7 @@ DATE | AIM
 1.31 | Peering into the depths of color
 <br>
 
-## 1.31.18 - Peering into the depths of color.
+# 1.31.18 - Peering into the depths of color.
 
 ### Color Depth
 The amount of data used to represent a single pixel.
@@ -24,8 +24,43 @@ We mostly just use RGB.
 - **RGBA:** Red, Green, Blue + Alpha (transparency)
 - **HSB:** Hue, Saturation, Brightness (cone diagram)
 
-### Image File Formats
-#### Vector
-- Vector formats represent images as a series of drawing instructions
+## Image File Formats
+
+### Vector vs. Raster
+**Vector:** represent images as a series of drawing instructions
 - They are infinitely scalable.
 - SVG (Scalable Vector Graphics)
+
+**Raster:** represent images as a grid of pixels
+
+### Uncompressed vs. Compressed (Raster)
+**Uncompressed:** contain data for each pixel
+- (i.e. BMP, TIFF, RAW)
+
+**Compressed:** use a compression algorithm to minimize file size
+1. *lossless* - contain enough information to exactly recreate the original image
+   - PNG (Portable Network Graphics), GIF (Graphics Interchange Format)
+2. *lossy* - do not retain all the details of the original image
+   - JPEG (Joint Photographic Experts Group)
+
+### PPM (Portable PixMap)
+Uncompressed raster format.  
+Pixel data is represented by RGB triplets in either ASCII or binary.  
+All whitespace is equivalent.
+
+Example File:
+```
+P3    // file type
+4 3   // dimensions
+255   // maximum color value
+// each group of 3 numbers is a single pixel
+255 0 0  255 0 0  255 0 0  255 0 0
+0 255 0  0 255 0  0 255 0  0 255 0
+0 0 255  0 0 255  0 0 255  0 0 255
+```
+
+##### Number 1 Rule of Graphics: 
+***DO NOT UPLOAD PPM FILES TO GITHUB***
+
+### Terminal conversion
+`$ convert pic.ppm pic.png`
