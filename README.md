@@ -2,9 +2,20 @@
 
 DATE | AIM
 --- | ---
-1.31 | Peering into the depths of color
+1.31 | Color depth, file formats: Peering into the depths of color
+2.2 | Utilities
 <br>
 
+# 2.2.18 - Utilities
+### emacs
+`ctrl-C` to convert between image and code
+
+### imagemagick
+Program thing for ppm.
+- `$ display image.ppm`
+- `$ convert image.ppm image.png`
+
+---
 # 1.31.18 - Peering into the depths of color.
 
 ### Color Depth
