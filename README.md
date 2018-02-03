@@ -2,10 +2,11 @@
 
 DATE | AIM
 --- | ---
-1.31 | Color depth, file formats: Peering into the depths of color
-2.2 | Utilities
+1.31 | Peering into the depths of color (color depth, file formats)
+2.2 | Utilities (emacs, imagemagick)
 <br>
 
+---
 # 2.2.18 - Utilities
 ### emacs
 `ctrl-C` to convert between image and code
@@ -59,7 +60,7 @@ Uncompressed raster format.
 Pixel data is represented by RGB triplets in either ASCII or binary.  
 All whitespace is equivalent.
 
-Example File:
+#### Example File:
 ```
 P3    // file type
 4 3   // dimensions
@@ -70,8 +71,5 @@ P3    // file type
 0 0 255  0 0 255  0 0 255  0 0 255
 ```
 
-##### Number 1 Rule of Graphics: 
+Number 1 Rule of Graphics:  
 ***DO NOT UPLOAD PPM FILES TO GITHUB***
-
-### Terminal conversion
-`$ convert pic.ppm pic.png`
