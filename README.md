@@ -4,7 +4,39 @@ DATE | AIM
 --- | ---
 1.31 | Peering into the depths of color (color depth, file formats)
 2.2 | Utilities (emacs, imagemagick)
+2.5 | Bresenham's Line Algorithm
 <br>
+
+---
+# 2.5.18 - Line Algorithms 
+`y = mx + b` - This is nice, but won't work in graphics because everything is in pixels, and therefore **INTEGERS**.  
+When using a line algorithm, we are *approximating* the line (except with horizontal/vertical lines).
+
+### Bresenham's Line Algorithm
+Find the pixels that best approximate a target line.
+#### Assume: 
+- `( x0, y0 ) -> ( x1, y1 )` are all integers (endpoints exist)
+- Only lines in octant I - `0 < m < 1`
+- `x0 < x1` - always start in the left and move to the right
+
+#### For example:
+```
+ __ __ __ __ __ __
+|__|__|__|__|__|__|
+|__|__|__|__|__|██|
+|__|__|__|__|__|__|
+|__|1_|__|__|__|__|
+|██|2_|__|__|__|__|
+
+```
+In picking the line between the two selected endpoints, we have 2 options for the next pixel:
+1. `( x+1 , y+1 )`
+2. `( x+1 , y )`
+
+To pick, use the midpoint `( x+1 , y+0.5 )`.  
+- If `( x+1 , y+0.5 )` is above the line, draw the lower pixel.
+- If `( x+1 , y+0.5 )` is below the line, draw the upper pixel.
+- If `( x+1 , y+0.5 )` is on the line, draw one or the other. 
 
 ---
 # 2.2.18 - Utilities
