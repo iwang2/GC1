@@ -7,7 +7,7 @@ DATE | AIM
 2/5 | [Bresenham's Line Algorithm](#2518---line-algorithms)
 
 ---
-# 2.5.18 - Line Algorithms 
+# 2.5.18 - Bresenham's Line Algorithm 
 `y = mx + b` - This is nice, but won't work in graphics because everything is in pixels, and therefore **INTEGERS**.  
 When using a line algorithm, we are *approximating* the line (except with horizontal/vertical lines).
 
@@ -55,21 +55,26 @@ f(x,y) = Ax + By + C
 - When the midpoint is above the line, `f(x,y) < 0`.
 - When the midpoint is below the line, `f(x,y) > 0`.
 
-### First Draft Algorithm: ( x<sub>0</sub> , y<sub>0</sub> ) -> ( x<sub>1</sub> , y<sub>1</sub> )
-x = x<sub>0</sub> ,  y = y<sub>0</sub>  
-d = f( x + 1 , y + 0.5)  
-while x <= x<sub>1</sub>  
-    plot ( x , y )  
-    x++  
-    if d > 0 : y++  
-    d = f ( x + 1 , y + 0.5 )
+### ( x<sub>0</sub> , y<sub>0</sub> ) -> ( x<sub>1</sub> , y<sub>1</sub> )
 
-### Second Draft Algorithm: 
+#### First Draft Algorithm: 
+```
+x = x0 ,  y = y1
+d = f ( x + 1 , y + 0.5)
+while x <= x1
+    plot ( x , y )
+    x++
+    if d > 0 : y++
+    d = f ( x + 1 , y + 0.5 )
+```
+
+#### Second Draft Algorithm: 
+```
 if x++ : d += A
 if y++ : d += B
 
 d = f( x + 1 , y + 0.5)  
-while x <= x<sub>1</sub>  
+while x <= x1 
     plot ( x , y )  
     if d > 0  
         y++ 
@@ -77,11 +82,13 @@ while x <= x<sub>1</sub>
     x++  
     d += A
     
-d = f ( x<sub>0</sub> + 1 , y<sub>0</sub> + 0.5 )
-  = A ( x<sub>0</sub> + 1 ) + B ( y<sub>0</sub> + 0.5 ) + C
-  = A x<sub>0</sub> + B y<sub>0</sub> + A + 0.5 B
-  = f (x, y)
-   
+d = f ( x0 + 1 , y0 + 0.5 )  
+  = A ( x0 + 1 ) + B ( y0 + 0.5 ) + C  
+  = A x0 + B y0 + A + 0.5 B  
+  = f (x0, y0) + A + 0.5B
+  = A + 0.5B
+```
+
 ---
 # 2.2.18 - Utilities
 ### emacs
