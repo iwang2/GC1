@@ -1,10 +1,10 @@
 # Computer Graphics, Spring 2018
-
+### Table of Contents
 DATE | AIM
---- | ---
-1.31 | [Peering into the depths of color](#13118---peering-into-the-depths-of-color) (color depth, file formats)
-2.2 | [Utilities](#2218---utilities) (emacs, imagemagick)
-2.5 | [Bresenham's Line Algorithm](#2518---line-algorithms)
+:---:| ---
+1/31 | [Peering into the depths of color](#13118---peering-into-the-depths-of-color) (color depth, file formats)
+2/2 | [Utilities](#2218---utilities) (emacs, imagemagick)
+2/5 | [Bresenham's Line Algorithm](#2518---line-algorithms)
 <br>
 
 ---
