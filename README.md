@@ -5,7 +5,7 @@ DATE | AIM
 1/31 | [Peering into the depths of color](#13118---peering-into-the-depths-of-color) (color depth, file formats)
 2/2 | [Utilities](#2218---utilities) (emacs, imagemagick)
 2/5 | [Bresenham's Line Algorithm](#2518---line-algorithms)
-<br>
+
 ---
 # 2.5.18 - Line Algorithms 
 `y = mx + b` - This is nice, but won't work in graphics because everything is in pixels, and therefore **INTEGERS**.  
