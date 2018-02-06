@@ -6,7 +6,6 @@ DATE | AIM
 2/2 | [Utilities](#2218---utilities) (emacs, imagemagick)
 2/5 | [Bresenham's Line Algorithm](#2518---line-algorithms)
 <br>
-
 ---
 # 2.5.18 - Line Algorithms 
 `y = mx + b` - This is nice, but won't work in graphics because everything is in pixels, and therefore **INTEGERS**.  
@@ -15,7 +14,7 @@ When using a line algorithm, we are *approximating* the line (except with horizo
 ### Bresenham's Line Algorithm
 Find the pixels that best approximate a target line.
 #### Assume: 
-- `( x0, y0 ) -> ( x1, y1 )` are all integers (endpoints exist)
+- `( x0 , y0 ) -> ( x1 , y1 )` are all integers (endpoints exist)
 - Only lines in octant I - `0 < m < 1`
 - `x0 < x1` - always start in the left and move to the right
 
