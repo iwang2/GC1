@@ -14,9 +14,9 @@ When using a line algorithm, we are *approximating* the line (except with horizo
 ### Bresenham's Line Algorithm
 Find the pixels that best approximate a target line.
 #### Assume: 
-- `( x0 , y0 ) -> ( x1 , y1 )` are all integers (endpoints exist)
+- ( x<sub>0</sub> , y<sub>0</sub> ) -> ( x<sub>1</sub> , y<sub>1</sub> ) are all integers (endpoints exist)
 - Only lines in octant I - `0 < m < 1`
-- `x0 < x1` - always start in the left and move to the right
+- x<sub>0</sub> < x<sub>1</sub> - always start in the left and move to the right
 
 #### For example:
 ```
@@ -32,11 +32,56 @@ In picking the line between the two selected endpoints, we have 2 options for th
 1. `( x+1 , y+1 )`
 2. `( x+1 , y )`
 
-To pick, use the midpoint `( x+1 , y+0.5 )`.  
-- If `( x+1 , y+0.5 )` is above the line, draw the lower pixel.
-- If `( x+1 , y+0.5 )` is below the line, draw the upper pixel.
-- If `( x+1 , y+0.5 )` is on the line, draw one or the other. 
+To pick, use the midpoint `( x + 1 , y + 0.5 )`.  
+- If the midpoint is **above** the line, draw the **lower** pixel.
+- If the midpoint is **below** the line, draw the **upper** pixel.
+- If the midpoint is on the line, draw one or the other. 
 
+#### Testing the Midpoint
+```
+y = mx + b
+0 = mx - y + b
+
+m = Δy / Δx
+
+0 = (Δy / Δx) x - y + b
+  = xΔy -yΔx + bΔx
+A = Δy, B = -Δx, C = bΔx
+0 = Ax + By + C
+
+f(x,y) = Ax + By + C
+```
+- When the midpoint is directly on the line, `f(x,y) = 0` (this is not really that important).
+- When the midpoint is above the line, `f(x,y) < 0`.
+- When the midpoint is below the line, `f(x,y) > 0`.
+
+### First Draft Algorithm: ( x<sub>0</sub> , y<sub>0</sub> ) -> ( x<sub>1</sub> , y<sub>1</sub> )
+x = x<sub>0</sub> ,  y = y<sub>0</sub>  
+d = f( x + 1 , y + 0.5)  
+while x <= x<sub>1</sub>  
+    plot ( x , y )  
+    x++  
+    if d > 0 : y++  
+    d = f ( x + 1 , y + 0.5 )
+
+### Second Draft Algorithm: 
+if x++ : d += A
+if y++ : d += B
+
+d = f( x + 1 , y + 0.5)  
+while x <= x<sub>1</sub>  
+    plot ( x , y )  
+    if d > 0  
+        y++ 
+        d += B
+    x++  
+    d += A
+    
+d = f ( x<sub>0</sub> + 1 , y<sub>0</sub> + 0.5 )
+  = A ( x<sub>0</sub> + 1 ) + B ( y<sub>0</sub> + 0.5 ) + C
+  = A x<sub>0</sub> + B y<sub>0</sub> + A + 0.5 B
+  = f (x, y)
+   
 ---
 # 2.2.18 - Utilities
 ### emacs
