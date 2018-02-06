@@ -2,7 +2,7 @@
 
 DATE | AIM
 --- | ---
-1.31 | [Peering into the depths of color](#13118-Peering-into-the-depths-of-color.) (color depth, file formats)
+1.31 | [Peering into the depths of color](#13118---Peering-into-the-depths-of-color.) (color depth, file formats)
 2.2 | Utilities (emacs, imagemagick)
 2.5 | Bresenham's Line Algorithm
 <br>
