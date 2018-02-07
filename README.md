@@ -7,6 +7,49 @@ DATE | AIM
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
 
 ---
+# 2.7.18 - Moving into other octants
+### Octant II
+```
+ __ __ __ __ __ __
+|__|__|__|██|__|__|
+|__|__|__|__|__|__|
+|__|__|__|__|__|__|
+|1_|2_|__|__|__|__|
+|██|__|__|__|__|__|
+
+```
+1. `( x , y + 1 )`
+2. `( x + 1 , y + 1 )`  
+
+MIDPOINT: `( x + 0.5 , y + 1 )`
+
+```
+d = 2A + B      --> d = A + 2B
+while x <= x1   --> y <= y1
+  plot(x,y)
+    if d > 0    --> d < 0
+    x++         // swapped with 
+    d += 2A
+  y++
+  d += 2B
+```
+
+### Octant VIII
+```
+ __ __ 
+|██|1_|  // ( x + 1 , y )
+|__|2_|  // ( x + 1 , y - 1 )
+
+```
+MIDPOINT : `( x + 1 , y - 0.5 )`
+
+```
+d0 : f ( x0 + 1 , y0 - 0.5 )
+     2A - B
+if d > 0
+```
+
+---
 # 2.5.18 - Bresenham's Line Algorithm 
 `y = mx + b` - This is nice, but won't work in graphics because everything is in pixels, and therefore **INTEGERS**.  
 When using a line algorithm, we are *approximating* the line (except with horizontal/vertical lines).
@@ -88,6 +131,17 @@ d = f ( x0 + 1 , y0 + 0.5 )
   = f (x0, y0) + A + 0.5B
   = A + 0.5B
 ```
+#### Third Draft Algorithm
+```
+d = 2A + B
+while x <= x1
+ plot(x,y)
+ if d > 0
+   y++
+   d += 2B
+ x++
+ d += 2A
+ ```
 
 ---
 # 2.2.18 - Utilities
