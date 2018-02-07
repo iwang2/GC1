@@ -5,22 +5,21 @@ DATE | AIM
 1/31 | [Peering into the depths of color](#13118---peering-into-the-depths-of-color) (color depth, file formats)
 2/2 | [Utilities](#2218---utilities) (emacs, imagemagick)
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
+2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 
 ---
-# 2.7.18 - Moving into other octants
+# 2.7.18 - Moving into Other Octants
+
 ### Octant II
 ```
  __ __ __ __ __ __
 |__|__|__|██|__|__|
 |__|__|__|__|__|__|
-|__|__|__|__|__|__|
-|1_|2_|__|__|__|__|
+|__|__|__|__|__|__|   //  1. ( x , y + 1 )
+|1_|2_|__|__|__|__|   //  2. ( x + 1 , y + 1 )
 |██|__|__|__|__|__|
 
 ```
-1. `( x , y + 1 )`
-2. `( x + 1 , y + 1 )`  
-
 MIDPOINT: `( x + 0.5 , y + 1 )`
 
 ```
@@ -72,8 +71,8 @@ Find the pixels that best approximate a target line.
 
 ```
 In picking the line between the two selected endpoints, we have 2 options for the next pixel:
-1. `( x+1 , y+1 )`
-2. `( x+1 , y )`
+1. `( x + 1 , y + 1 )`
+2. `( x + 1 , y )`
 
 To pick, use the midpoint `( x + 1 , y + 0.5 )`.  
 - If the midpoint is **above** the line, draw the **lower** pixel.
