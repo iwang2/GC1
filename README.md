@@ -6,6 +6,25 @@ DATE | AIM
 2/2 | [Utilities](#2218---utilities) (emacs, imagemagick)
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
+2/12 | [Representing Image Data](#21218---representing-image-data)
+
+---
+# 2.12.18 - Representing Image Data
+Say you have a triangle. Each time you create the triangle, `draw_line()` must be called 3 times.  
+To store this triangle, you could create a list of the pairs of points.
+- [ p0, p1, p2 ]      --> edge list
+- [ p0  p1  p2 ]
+  [ p1, p2, p0 ]
+- [ p0, p1, p2, p0 ]
+- one list for points, another list for connections between points
+
+### Edge List 
+List of points in the image where every 2 points determines a line.
+
+[ p<sub>0</sub>, p<sub>1</sub>, p<sub>2</sub>, p<sub>3</sub> ... p<sub>n</sub> ]  --> (p<sub>0</sub>, p<sub>1</sub>), (p<sub>2</sub>, p<sub>3</sub>), (p<sub>n-1</sub>, p<sub>n</sub>)  
+Triangle ABC --> [ A, B, B, C, C, A ]
+
+This is essentially a two dimensional array.
 
 ---
 # 2.7.18 - Moving into Other Octants
