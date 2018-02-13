@@ -7,6 +7,60 @@ DATE | AIM
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 2/12 | [Representing Image Data](#21218---representing-image-data)
+2/13 | [Matrices](#21318---matrices) (matrices, transformations)
+
+---
+# 2.13.18 - Matrices
+[ P<sub>0</sub> , P<sub>1</sub> , P<sub>2</sub> , P<sub>3</sub> ... P<sub>n</sub> ]
+
+[ x<sub>0</sub> , x<sub>1</sub> ... x<sub>n</sub> ]  
+[ y<sub>0</sub> , y<sub>1</sub> ... y<sub>n</sub> ]  
+[ z<sub>0</sub> , z<sub>1</sub> ... z<sub>n</sub> ]
+
+3 x N  (3 rows, N columns)
+
+### Matrix Math in Graphics
+#### *Matrix multiplication:* M·N
+  /# of columns in M = # of rows in N
+  A x B · B x C = A x C
+- Non-commutative: M·N ≠ N·M
+
+Some Matrix Multiplication Examples:
+```
+            | a |
+| 1 2 3 | · | b | = | 1a + 2b + 3c |
+    1x3     | c |         1x1
+             3x1
+```
+```
+| 1 2 3 |   | a b |   | 1a+2c+3a 1b+2d+3f |
+| 4 5 6 | · | c d | = | 4a+5c+6e 4b+5d+6f |
+| 7 8 9 |   | e f |   | 7a+8c+9e 7b+8d+9f |
+   3x3        3x2             3x2
+```
+
+#### Multiplicative Identity Matrix: M · I = M
+- square, diagonal of 1's, and 0's everywhere else
+```
+| 1 0 | . | a | = | a |
+| 0 1 |   | b |   | b |
+```
+
+### Transformations
+Translation, dilation, rotation (*affine* transformations; preserves orientation and vertices).
+- E: edge matrix
+- T: transformation matrix
+- E·T or **T·E** ( i.e. 3x3 · 3xN = 3xN )
+
+#### Translation
+( x, y, z ) T<sub>(a, b, c)</sub> ( x+a, y+b, z+c );
+```
+| 1 0 0 a |   | x |   | x+a |
+| 0 1 0 b | · | y | = | y+b |
+| 0 0 1 c |   | z |   | z+c |
+| 0 0 0 1 |   | 1 |   |  1  |
+    4x4        4xN      4xN
+```
 
 ---
 # 2.12.18 - Representing Image Data
@@ -21,7 +75,9 @@ To store this triangle, you could create a list of the pairs of points.
 ### Edge List 
 List of points in the image where every 2 points determines a line.
 
-[ p<sub>0</sub>, p<sub>1</sub>, p<sub>2</sub>, p<sub>3</sub> ... p<sub>n</sub> ]  --> (p<sub>0</sub>, p<sub>1</sub>), (p<sub>2</sub>, p<sub>3</sub>), (p<sub>n-1</sub>, p<sub>n</sub>)  
+[ p<sub>0</sub> , p<sub>1</sub> , p<sub>2</sub> , p<sub>3</sub> ... p<sub>n</sub> ]
+--> 
+( p<sub>0</sub> , p<sub>1</sub> ), (p<sub>2</sub> , p<sub>3</sub>) , (p<sub>n-1</sub> , p<sub>n</sub> )  
 Triangle ABC --> [ A, B, B, C, C, A ]
 
 This is essentially a two dimensional array.
