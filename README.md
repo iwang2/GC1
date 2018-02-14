@@ -7,20 +7,19 @@ DATE | AIM
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 2/12 | [Representing Image Data](#21218---representing-image-data)
-2/13 | [Matrices](#21318---matrices) (matrices, transformations)
+2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics) (matrices, transformations)
 
 ---
-# 2.13.18 - Matrices
+# 2.13.18 - Matrix Math in Graphics
 [ P<sub>0</sub> , P<sub>1</sub> , P<sub>2</sub> , P<sub>3</sub> ... P<sub>n</sub> ]
 
-[ x<sub>0</sub> , x<sub>1</sub> ... x<sub>n</sub> ]  
-[ y<sub>0</sub> , y<sub>1</sub> ... y<sub>n</sub> ]  
-[ z<sub>0</sub> , z<sub>1</sub> ... z<sub>n</sub> ]
+| x<sub>0</sub> , x<sub>1</sub> ... x<sub>n</sub> |  
+| y<sub>0</sub> , y<sub>1</sub> ... y<sub>n</sub> |  
+| z<sub>0</sub> , z<sub>1</sub> ... z<sub>n</sub> |
 
 3 x N  (3 rows, N columns)
 
-### Matrix Math in Graphics
-#### *Matrix multiplication:* M·N
+### *Matrix multiplication:* M·N
   /# of columns in M = # of rows in N
   A x B · B x C = A x C
 - Non-commutative: M·N ≠ N·M
@@ -39,7 +38,7 @@ Some Matrix Multiplication Examples:
    3x3        3x2             3x2
 ```
 
-#### Multiplicative Identity Matrix: M · I = M
+### Multiplicative Identity Matrix: M · I = M
 - square, diagonal of 1's, and 0's everywhere else
 ```
 | 1 0 | . | a | = | a |
