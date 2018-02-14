@@ -19,12 +19,12 @@ DATE | AIM
 
 3 x N  (3 rows, N columns)
 
-### *Matrix multiplication:* M·N
-  /# of columns in M = # of rows in N
-  A x B · B x C = A x C
+### Matrix multiplication: M·N
+- # of columns in M = # of rows in N  
+- A x B · B x C = A x C
 - Non-commutative: M·N ≠ N·M
 
-Some Matrix Multiplication Examples:
+#### Some Matrix Multiplication Examples
 ```
             | a |
 | 1 2 3 | · | b | = | 1a + 2b + 3c |
