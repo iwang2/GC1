@@ -20,7 +20,7 @@ DATE | AIM
 3 x N  (3 rows, N columns)
 
 ### Matrix multiplication: M·N
-- /# of columns in M = # of rows in N  
+- \# of columns in M = # of rows in N  
 - A x B · B x C = A x C
 - Non-commutative: M·N ≠ N·M
 
