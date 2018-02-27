@@ -8,6 +8,55 @@ DATE | AIM
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 2/12 | [Representing Image Data](#21218---representing-image-data)
 2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics) (matrices, transformations)
+2/26 | [Transformations](#22618---transformations)
+
+---
+# 2.26.18 - Transformations
+Translation, dilation, rotation (*affine* transformations; preserves orientation and vertices).
+- E: edge matrix
+- T: transformation matrix
+- E · T or **T · E** ( i.e. 3x3 · 3xN = 3xN )
+
+### Translation
+( x, y, z ) -> T<sub>(a, b, c)</sub> -> ( x+a, y+b, z+c );
+```
+| 1 0 0 a |   | x |   | x+a |
+| 0 1 0 b | · | y | = | y+b |
+| 0 0 1 c |   | z |   | z+c |
+| 0 0 0 1 |   | 1 |   |  1  |
+    4x4        4xN      4xN
+```
+
+### Dilation
+( x, y, z ) -> D<sub>(a, b, c)</sub> -> ( ax, by, cz )
+```
+| a 0 0 0 |   | x |   | ax |
+| 0 b 0 0 | · | y | = | by |
+| 0 0 c 0 |   | z |   | cz |
+| 0 0 0 1 |   | 1 |   |  1 |
+  D(a,b,c)
+```
+With this formula, the size of the object being drawn will be scaled, but so will the distance from the origin. 
+To avoid this, you can translate the object to the origin, dilate, and then translate back. 
+
+### Rotation
+```
+|
+|    · ( x1 , y1 )
+|
+|         · ( x , y )
+|_____________
+```
+( x, y ) -> R<sub></sub> -> ( ? , ? )
+
+#### Polar Coordinates
+- x = r·cos(phi)
+- y = r·sin(phi)
+- x1 = r·cos(phi + theta)
+  x1 = rcos(phi)cos(theta) - rsin(phi)sin(theta)
+  x1 = xcos(theta) - ysin(theta)
+- y1 = rsin(phi + theta)
+  y1 = ycos(theta) + xsin(theta)
 
 ---
 # 2.13.18 - Matrix Math in Graphics
@@ -43,22 +92,6 @@ DATE | AIM
 ```
 | 1 0 | . | a | = | a |
 | 0 1 |   | b |   | b |
-```
-
-### Transformations
-Translation, dilation, rotation (*affine* transformations; preserves orientation and vertices).
-- E: edge matrix
-- T: transformation matrix
-- E·T or **T·E** ( i.e. 3x3 · 3xN = 3xN )
-
-#### Translation
-( x, y, z ) T<sub>(a, b, c)</sub> ( x+a, y+b, z+c );
-```
-| 1 0 0 a |   | x |   | x+a |
-| 0 1 0 b | · | y | = | y+b |
-| 0 0 1 c |   | z |   | z+c |
-| 0 0 0 1 |   | 1 |   |  1  |
-    4x4        4xN      4xN
 ```
 
 ---
