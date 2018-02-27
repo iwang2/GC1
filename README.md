@@ -8,7 +8,7 @@ DATE | AIM
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 2/12 | [Representing Image Data](#21218---representing-image-data)
 2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics) (matrices, transformations)
-2/26 | [Transformations](#22618---transformations)
+2/26 | [Transformations](#22618---transformations) ([translation](#translation), [dilation](#dilation), [rotation](#rotation))
 
 ---
 # 2.26.18 - Transformations
@@ -41,22 +41,77 @@ To avoid this, you can translate the object to the origin, dilate, and then tran
 
 ### Rotation
 ```
+y
+|  · (x1,y1)
 |
-|    · ( x1 , y1 )
+|      · (x,y)
 |
-|         · ( x , y )
-|_____________
+|______________ x
 ```
-( x, y ) -> R<sub></sub> -> ( ? , ? )
+( x, y ) -> R<sub>θ</sub> -> ( ? , ? )  
+θ is the angle between the two points  
+Φ is the angle between (x,y) and the original x-axis
 
 #### Polar Coordinates
-- x = r·cos(phi)
-- y = r·sin(phi)
-- x1 = r·cos(phi + theta)
-  x1 = rcos(phi)cos(theta) - rsin(phi)sin(theta)
-  x1 = xcos(theta) - ysin(theta)
-- y1 = rsin(phi + theta)
-  y1 = ycos(theta) + xsin(theta)
+- **x = r·cos(Φ)**
+- **y = r·sin(Φ)**
+- x1 = r·cos(Φ + θ)
+  x1 = rcos(Φ)cos(θ) - rsin(Φ)sin(θ)
+  **x1 = xcos(θ) - ysin(θ)**
+- y1 = rsin(Φ + θ)
+  **y1 = ycos(θ) + xsin(θ)**
+
+```
+| cos -sin  0  0 |   | x |   | xcos - ysin |
+| sin  cos  0  0 |   | y |   | ycos + xsin |
+|  0    0   1  0 | · | z | = |      z      |
+|  0    0   0  1 |   | 1 |   |      1      |
+     R(θ,z)
+```
+
+#### R<sub>θ,x</sub>
+```
+    z
+    |  · (y1,z1)
+    |
+    |      · (y,z)
+    |
+    |______________ y
+   /
+  /
+ /
+x
+```
+y = rcosθ, z = rsinθ
+y1 = ycosθ - zsinθ  
+z1 = zcosθ + ysinθ
+
+
+#### R<sub>θ,y</sub>
+```
+    x
+    |  · (z1,x1)
+    |
+    |      · (z,x)
+    |
+    |______________ z
+   /
+  /
+ /
+y
+```
+z1 = zcosθ - xsinθ
+x1 = xcosθ + zsinθ
+
+### Combining Transformations
+E<sub>0</sub> (edges), T (translate), R (rotate), S (scale)
+- T · E<sub>0</sub> = E<sub>1</sub>
+- R · E<sub>1</sub> = E<sub>2</sub>
+- S · E<sub>2</sub> = E<sub>3</sub>
+- **E<sub>3</sub> = ( S · R · T ) · E<sub>0</sub>**
+
+**-THIS IS ASSOCIATIVE-**  
+Read from right to left. Translate first, then rotate, then scale.
 
 ---
 # 2.13.18 - Matrix Math in Graphics
