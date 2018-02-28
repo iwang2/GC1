@@ -56,10 +56,10 @@ y
 - **x = r·cos(Φ)**
 - **y = r·sin(Φ)**
 - x1 = r·cos(Φ + θ)  
-  x1 = rcos(Φ)cos(θ) - rsin(Φ)sin(θ)  
-  **x1 = xcos(θ) - ysin(θ)**
-- y1 = rsin(Φ + θ)
-  **y1 = ycos(θ) + xsin(θ)**
+  x1 = r·cos(Φ)cos(θ) - r·sin(Φ)sin(θ)  
+  **x1 = x·cos(θ) - y·sin(θ)**
+- y1 = r·sin(Φ + θ)  
+  **y1 = y·cos(θ) + x·sin(θ)**
 
 ```
 | cos -sin  0  0 |   | x |   | xcos - ysin |
