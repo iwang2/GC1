@@ -55,8 +55,8 @@ y
 #### Polar Coordinates
 - **x = r·cos(Φ)**
 - **y = r·sin(Φ)**
-- x1 = r·cos(Φ + θ)
-  x1 = rcos(Φ)cos(θ) - rsin(Φ)sin(θ)
+- x1 = r·cos(Φ + θ)  
+  x1 = rcos(Φ)cos(θ) - rsin(Φ)sin(θ)  
   **x1 = xcos(θ) - ysin(θ)**
 - y1 = rsin(Φ + θ)
   **y1 = ycos(θ) + xsin(θ)**
@@ -82,10 +82,9 @@ y
  /
 x
 ```
-y = rcosθ, z = rsinθ
+y = rcosθ, z = rsinθ  
 y1 = ycosθ - zsinθ  
 z1 = zcosθ + ysinθ
-
 
 #### R<sub>θ,y</sub>
 ```
@@ -110,7 +109,7 @@ E<sub>0</sub> (edges), T (translate), R (rotate), S (scale)
 - S · E<sub>2</sub> = E<sub>3</sub>
 - **E<sub>3</sub> = ( S · R · T ) · E<sub>0</sub>**
 
-**-THIS IS ASSOCIATIVE-**  
+***THIS IS ASSOCIATIVE***  
 Read from right to left. Translate first, then rotate, then scale.
 
 ---
