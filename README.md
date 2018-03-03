@@ -99,7 +99,7 @@ z1 = zcosθ + ysinθ
  /
 y
 ```
-z1 = zcosθ - xsinθ
+z1 = zcosθ - xsinθ  
 x1 = xcosθ + zsinθ
 
 ### Combining Transformations
