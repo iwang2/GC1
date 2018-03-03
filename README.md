@@ -7,7 +7,7 @@ DATE | AIM
 2/5 | [Bresenham's Line Algorithm](#2518---bresenhams-line-algorithm)
 2/7 | [Line Algorithm in other octants](#2718---moving-into-other-octants)
 2/12 | [Representing Image Data](#21218---representing-image-data)
-2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics) (matrices, transformations)
+2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics)
 2/26 | [Transformations](#22618---transformations) ([translation](#translation), [dilation](#dilation), [rotation](#rotation))
 
 ---
