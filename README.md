@@ -9,6 +9,42 @@ DATE | AIM
 2/12 | [Representing Image Data](#21218---representing-image-data)
 2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics)
 2/26 | [Transformations](#22618---transformations) ([translation](#translation), [dilation](#dilation), [rotation](#rotation))
+3/5 | [Parametrics](#3518---parametric-equations)
+
+---
+# 3.5.18 - Parametric Equations
+Instead of defining a curve in which `x` and `y` are directly dependent on each other, they will be separately related to another variable.
+
+Essentially, **define a curve as a system of equations based on an independent variable (t).**
+- for example: `x = f(t)`, `y = g(t)`, `z = h(t)`
+- For consistency, think of `t` as going from 0 to 1. 
+
+### General Parametric Framework
+```
+for t : 0->1, t += increment
+    x = f(t)
+    y = g(t)
+    add(x, y)
+```
+**`t`** will not be an integer (the smaller the value, the more precise the image, and the slower your program will be)
+
+### Line ( x<sub>0</sub> , y<sub>0</sub> ) -> ( x<sub>1</sub> , y<sub>1</sub> )
+- f(t) = x<sub>0</sub> + t(Δx)
+- g(t) = y<sub>0</sub> + t(Δy)
+
+When `t = 0`, x = x<sub>0</sub> and y = y<sub>0</sub>.  
+When `t = 1`, x = x<sub>1</sub> and y = y<sub>1</sub>.
+
+### Circle ( x<sub>c</sub> , y<sub>c</sub> ), r
+- f(t) = r·cos(2π·t) + x<sub>c</sub>
+- g(t) = r·sin(2π·t) + y<sub>c</sub>
+- θ : 0 -> 2π
+
+Because of floating point math on computers, when you write your code, it's better to have integer based controls. So if you want 100 steps, instead of making the increment 0.01, make `t` go from 0 to 100, and then later divide by 100. 
+
+### Splines
+Curves that can be combined smoothly.  
+We will only draw cubics.
 
 ---
 # 2.26.18 - Transformations
