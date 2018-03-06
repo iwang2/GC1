@@ -10,6 +10,47 @@ DATE | AIM
 2/13 | [Matrix Math in Graphics](#21318---matrix-math-in-graphics)
 2/26 | [Transformations](#22618---transformations) ([translation](#translation), [dilation](#dilation), [rotation](#rotation))
 3/5 | [Parametrics](#3518---parametric-equations)
+3/6 | [Hermite Curves](#3618---hermite-curves)
+
+---
+# 3.6.18 - Hermite Curves
+
+### Splines
+Curves that can be combined smoothly.  
+We will only draw cubics, and combine them to form these curves.
+
+for t: 0->1, t += step
+- x = a<sub>x</sub> · t<sup>3</sup> + b<sub>x</sub> · t<sup>2</sup> + c · t + d<sub>x</sub>
+- y = a<sub>y</sub> · t<sup>3</sup> + b<sub>y</sub> · t<sup>2</sup> + c · t + d<sub>y</sub>
+
+### Given Information
+- endpoints: P<sub>0</sub>, P<sub>1</sub>
+- rate of change at each endpoint: R<sub>0</sub>, R<sub>1</sub>
+- points on curve: f(t) = a · t<sup>3</sup> + b · t<sup>2</sup> + c · t + d
+- rates of change: f'(t) = 3a · t<sup>2</sup> + 2b · t + c
+
+When t = 0                | When t = 1 
+---                       | ---
+f(t) = d : P<sub>0</sub>  | f(t) = a + b + c + d : P<sub>1</sub> 
+f'(t) = c : R<sub>0</sub> | f'(t) = 3a + 2b + c : R<sub>1</sub>
+
+### H · C = G
+```
+| 0 0 0 1 |   | a |   | P0 |
+| 1 1 1 1 | · | b | = | P1 |
+| 0 0 1 0 |   | c |   | R0 |
+| 3 2 1 0 |   | d |   | R1 |
+     H          C       G
+```
+Unfortunately, we don't need to solve for G, because that is already given. 
+
+### H<sup>-1</sup> · G = C
+```
+|  2 -2  1  1  |   | P0 |   | a |
+| -3  3 -2 -1  | · | P1 | = | b |
+|  0  0  1  0  |   | R0 |   | c |
+|  1  0  0  0  |   | R1 |   | d |
+```
 
 ---
 # 3.5.18 - Parametric Equations
@@ -36,15 +77,11 @@ When `t = 0`, x = x<sub>0</sub> and y = y<sub>0</sub>.
 When `t = 1`, x = x<sub>1</sub> and y = y<sub>1</sub>.
 
 ### Circle ( x<sub>c</sub> , y<sub>c</sub> ), r
-- f(t) = r·cos(2π·t) + x<sub>c</sub>
-- g(t) = r·sin(2π·t) + y<sub>c</sub>
+- f(t) = r · cos(2π·t) + x<sub>c</sub>
+- g(t) = r · sin(2π·t) + y<sub>c</sub>
 - θ : 0 -> 2π
 
-Because of floating point math on computers, when you write your code, it's better to have integer based controls. So if you want 100 steps, instead of making the increment 0.01, make `t` go from 0 to 100, and then later divide by 100. 
-
-### Splines
-Curves that can be combined smoothly.  
-We will only draw cubics.
+Because of floating point math on computers, when you write your code, it's better to have integer based controls. So if you want 100 steps, instead of making the increment 0.01, make `t` go from 0 to 100, and divide by 100 at the end. 
 
 ---
 # 2.26.18 - Transformations
