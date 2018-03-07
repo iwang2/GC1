@@ -11,6 +11,43 @@ DATE | AIM
 2/26 | [Transformations](#22618---transformations) ([translation](#translation), [dilation](#dilation), [rotation](#rotation))
 3/5 | [Parametrics](#3518---parametric-equations)
 3/6 | [Hermite Curves](#3618---hermite-curves)
+3/7 | [Bezier Curves](#3718---bezier-curves)
+
+---
+# 3.7.18 - Bezier Curves
+Defined by `n + 1` points (`n` = degree of the equation).
+
+### Bezier Line
+We will start with a line.
+```
+      . P1
+     /
+    /
+   . Pt
+  / 
+ /
+. P0
+```
+- P<sub>t</sub> moves along the line P<sub>0</sub>P<sub>1</sub>
+- P<sub>t</sub> = (1 - t) · P<sub>0</sub> + t · P<sub>1</sub>
+
+### Quadratic
+Three points: P<sub>0</sub>, P<sub>1</sub>, P<sub>2</sub>.
+
+Q<sub>0</sub> moves along the line P<sub>0</sub>P<sub>1</sub>.   
+Q<sub>1</sub> moves along the line P<sub>1</sub>P<sub>2</sub>.  
+Q<sub>t</sub> moves along the line Q<sub>0</sub>Q<sub>1</sub>.
+
+Q<sub>t</sub> = (1 - t) · Q<sub>0</sub> + t · Q<sub>1</sub>  
+= (1 - t)<sup>2</sup> · P<sub>0</sub> + 2t · (1 - t) · P<sub>1</sub> + t<sup>2</sup> · P<sub>2</sub>
+
+### Cubic
+Rt moves along the line R0, R1.  
+R0 moves along the quadratic Q0, Q1.  
+R1 moves along the quadratc Q1, Q2.
+
+Rt = (1 - t) · R0 + t · R1  
+   = (1 - t)^2 · P0 + 3·t · (1-t)^2 + 3·t^2 · (1-t) · P2 + t^3 · P3
 
 ---
 # 3.6.18 - Hermite Curves
