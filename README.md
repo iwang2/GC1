@@ -15,9 +15,9 @@ DATE | AIM
 
 ---
 # 3.7.18 - Bezier Curves
-Defined by `n + 1` points (`n` = degree of the equation).
+Defined by `n + 1` points (n = degree of the equation).
 
-### Bezier Line
+### Line
 We will start with a line.
 ```
       . P1
@@ -46,8 +46,23 @@ Rt moves along the line R0, R1.
 R0 moves along the quadratic Q0, Q1.  
 R1 moves along the quadratc Q1, Q2.
 
-Rt = (1 - t) · R0 + t · R1  
-   = (1 - t)^2 · P0 + 3·t · (1-t)^2 + 3·t^2 · (1-t) · P2 + t^3 · P3
+#### R<sub>t</sub>
+= (1 - t) · R<sub>0</sub> + t · R<sub>1</sub>  
+= (1 - t)<sup>2</sup> · P<sub>0</sub> + 3t · (1 - t)<sup>2</sup> · P<sub>1</sub> + 3 · t<sup>2</sup> · (1 - t) · P<sub>2</sub> + t<sup>3</sup> · P<sub>3</sub>  
+= ( -P<sub>0</sub> + 3P<sub>1</sub> - 3P<sub>2</sub> + P<sub>3</sub> ) t<sup>3</sup> + ( 3P<sub>0</sub> - 6P<sub>1</sub> + 3P<sub>2</sub> ) t<sup>2</sup> + ( -3P<sub>0</sub> + 3P<sub>1</sub> ) t + P<sub>0</sub>
+
+#### a·t<sup>3</sup> + b·t<sup>2</sup> + c·t + d
+- a = -P<sub>0</sub> + 3P<sub>1</sub> - 3P<sub>2</sub> + P<sub>3</sub>
+- b = 3P<sub>0</sub> - 6P<sub>1</sub> + 3P<sub>2</sub>
+- c = -3P<sub>0</sub> + 3P<sub>1</sub>
+- d = 3P<sub>2</sub>
+
+```
+| -1  3 -3  1 |   | P0 |   | a |
+|  3 -6  3  0 |   | P1 |   | b |
+| -3  3  0  0 | · | P2 | = | c |
+|  1  0  0  0 |   | P3 |   | d |
+```
 
 ---
 # 3.6.18 - Hermite Curves
