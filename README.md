@@ -13,6 +13,26 @@ DATE | AIM
 3/6 | [Hermite Curves](#3618---hermite-curves)
 3/7 | [Bezier Curves](#3718---bezier-curves)
 
+------
+# 3.13.18 - 3D Shapes
+
+### Box
+Defining points: vertices  
+Given information: P<sub>0</sub> (top, left, front), width (x), height (y), depth (z)  
+
+### Sphere
+Defining points: points on the surface  
+Given information: center, radius  
+Generate the defining points by drawing a circle and rotating it.  
+If you rotate about the z-axis, there is no 3D shape. Rotate about the x or y-axis.  
+```
+| 1  0      0  |   | rcosθ |   | x |
+| 0 cosΦ -sinΦ | · | rsinθ | = | y |
+| 0 sinΦ  cosΦ |   |   0   |   | z |
+```
+θ = angle of circle creation  
+Φ = angle of rotation
+
 ---
 # 3.7.18 - Bezier Curves
 Defined by `n + 1` points (n = degree of the equation).
