@@ -12,6 +12,7 @@ DATE | AIM
 3/5 | [Parametrics](#3518---parametric-equations)
 3/6 | [Hermite Curves](#3618---hermite-curves)
 3/7 | [Bezier Curves](#3718---bezier-curves)
+3/13 | [3D Shapes](#31318---3d-shapes)
 
 ------
 # 3.13.18 - 3D Shapes
@@ -21,17 +22,49 @@ Defining points: vertices
 Given information: P<sub>0</sub> (top, left, front), width (x), height (y), depth (z)  
 
 ### Sphere
-Defining points: points on the surface  
-Given information: center, radius  
+**Defining points:** points on the surface  
+**Given information:** center, radius  
 Generate the defining points by drawing a circle and rotating it.  
 If you rotate about the z-axis, there is no 3D shape. Rotate about the x or y-axis.  
 ```
 | 1  0      0  |   | rcosθ |   | x |
-| 0 cosΦ -sinΦ | · | rsinθ | = | y |
-| 0 sinΦ  cosΦ |   |   0   |   | z |
+| 0 cosϕ -sinϕ | · | rsinθ | = | y |
+| 0 sinϕ  cosϕ |   |   0   |   | z |
 ```
 θ = angle of circle creation  
-Φ = angle of rotation
+ϕ = angle of rotation (0 -> 2π)
+
+There are a few ways to draw a sphere:
+1. Draw a circle and rotate it 180 degrees.
+2. Draw a semi-circle and rotate it 360 degrees (the better option). 
+
+#### Pseudocode
+```
+for (ϕ: 0 -> 2π) {
+    for (θ: 0 -> π) { // Semicircle
+        x = rcosθ + cx
+		y = rsinθcosϕ + cy
+		z = rsinθsinϕ + cz
+	}
+}
+```
+
+### Torus
+**Defining points:** points on the surface  
+**Given information:** R (radius of the whole torus), r (radius of cross section), center
+
+Generate the image by translating a circle and rotating it.  
+If we move over x, rotate about y.  
+If we move over y, rotate about x. 
+
+```
+    y-rotation          circle               torus
+|  cosϕ  0  sinϕ |  | rcosθ + R |   |  cosϕ(rcosθ + R) + cx |   | x |
+|   0    1    0  |  |   rsinθ   | = |      rsinθ + cy       | = | y |
+| -sinϕ  0  cosϕ |  |     0     |   | -sinϕ(rcosθ + R) + cz |   | z |
+```
+θ = 0 -> 2π  
+ϕ = 0 -> 2π
 
 ---
 # 3.7.18 - Bezier Curves
