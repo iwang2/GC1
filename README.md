@@ -42,8 +42,8 @@ There are a few ways to draw a sphere:
 #### Pseudocode
 ```
 for (ϕ: 0 -> 2π) {
-    for (θ: 0 -> π) { // Semicircle
-        x = rcosθ + cx
+	for (θ: 0 -> π) { // Semicircle
+		x = rcosθ + cx
 		y = rsinθcosϕ + cy
 		z = rsinθsinϕ + cz
 	}
