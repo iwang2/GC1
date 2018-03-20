@@ -14,7 +14,30 @@ DATE | AIM
 3/7 | [Bezier Curves](#3718---bezier-curves)
 3/13 | [3D Shapes](#31318---3d-shapes) ([cube](#box), [sphere](#sphere), [torus](#torus))
 
-------
+---
+# 3.20.18 - Vector Math "Review"
+Vectors have direction and magnitude. 
+```
+| ( x, y, z )     |  ^   < x, y, z >
+|    ·            | /
+|____________     |/____________
+```
+Given vector **A**, `< x,y,z >`, the magnitude ||A|| = sqrt( x<sup>2</sup>, y<sup>2</sup>, z<sup>2</sup> ).
+
+A normalized vector is a unit vector that preserves the direction of another vector.  
+A' = 1 / ||A|| * < A<sub>x</sub>, A<sub>y</sub>, A<sub>z</sub> >
+
+Given vectors **A** and **B**, and angle θ between them:  
+### Dot Product: **A** · **B**
+- ||A|| · ||B|| · cosθ
+- A<sub>x</sub> · B<sub>x</sub> + A<sub>y</sub> · B<sub>y</sub> + A<sub>z</sub> · B<sub>z</sub>
+
+### Cross Product
+Perpendicular to **A** and **B**.  
+Magnitude = area of the parallelogram formed by **A** and **B**.  
+**A** x **B** = ||A|| · ||B|| · sinθ
+
+---
 # 3.13.18 - 3D Shapes
 
 ### Box
