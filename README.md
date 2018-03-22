@@ -13,6 +13,7 @@ DATE | AIM
 3/6 | [Hermite Curves](#3618---hermite-curves)
 3/7 | [Bezier Curves](#3718---bezier-curves)
 3/13 | [3D Shapes](#31318---3d-shapes) ([cube](#box), [sphere](#sphere), [torus](#torus))
+3/20 | [Vector Math](#32018---vector-math-review)
 
 ---
 # 3.20.18 - Vector Math "Review"
