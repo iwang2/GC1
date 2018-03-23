@@ -13,7 +13,44 @@ DATE | AIM
 3/6 | [Hermite Curves](#3618---hermite-curves)
 3/7 | [Bezier Curves](#3718---bezier-curves)
 3/13 | [3D Shapes](#31318---3d-shapes) ([cube](#box), [sphere](#sphere), [torus](#torus))
-3/20 | [Vector Math](#32018---vector-math-review)
+3/20 | [Vector Math](#32018---vector-math-review) ([dot product](#dot-product-a--b), [cross product](#cross-product-a-x-b))
+3/23 | [Rendering 3D Objects](#32318---rendering-3d-objects) ([wireframe](#wireframe-mesh), [polygon](#polygon-mesh))
+
+---
+# 3.23.18 - Rendering 3D Objects
+
+### Wireframe Mesh
+Shape is defined by the *edges* that connect points on the surface.
+
+`add_box` -> `add_edge` -> `add_point`  
+`draw_lines` -> `draw_line`
+
+#### Disadvantages: 
+- edges cannot be filled in
+- perspective is difficult to discern just by looking at the screen
+
+### Polygon Mesh
+Shape is defined by the *polygons* that connect points on the surface (triangles).
+
+`add_box` -> `add_polygon` -> `add_point`  
+new function (because `draw_lines` is no longer suitable): `draw_polygons` -> `draw_line`
+
+```
+    P0
+    /\
+P1 /__\ P2
+      /\
+     /__\
+   P3    P4
+```
+#### Edge Matrix:
+[ P<sub>0</sub>P<sub>1</sub>, P<sub>0</sub>P<sub>2</sub>, P<sub>1</sub>P<sub>2</sub>, ... ]
+- six edges
+
+#### Polygon Matrix
+[ P<sub>0</sub>P<sub>1</sub>P<sub>2</sub>, P<sub>2</sub>P<sub>3</sub>P<sub>4</sub> ]
+- two triangles
+- points must be added in *counter-clockwise* order
 
 ---
 # 3.20.18 - Vector Math "Review"
@@ -23,20 +60,28 @@ Vectors have direction and magnitude.
 |    ·            | /
 |____________     |/____________
 ```
-Given vector **A**, `< x,y,z >`, the magnitude ||A|| = sqrt( x<sup>2</sup>, y<sup>2</sup>, z<sup>2</sup> ).
+Given vector **A**, `< x,y,z >`, the magnitude || A || = sqrt( x<sup>2</sup>, y<sup>2</sup>, z<sup>2</sup> ).
 
 A normalized vector is a unit vector that preserves the direction of another vector.  
-A' = 1 / ||A|| * < A<sub>x</sub>, A<sub>y</sub>, A<sub>z</sub> >
+A' = 1 / || A || * < A<sub>x</sub>, A<sub>y</sub>, A<sub>z</sub> >
 
 Given vectors **A** and **B**, and angle θ between them:  
 ### Dot Product: **A** · **B**
-- ||A|| · ||B|| · cosθ
+- || A || · || B || · cosθ
 - A<sub>x</sub> · B<sub>x</sub> + A<sub>y</sub> · B<sub>y</sub> + A<sub>z</sub> · B<sub>z</sub>
 
-### Cross Product
+### Cross Product: **A** x **B**
 Perpendicular to **A** and **B**.  
 Magnitude = area of the parallelogram formed by **A** and **B**.  
-**A** x **B** = ||A|| · ||B|| · sinθ
+- || A || · || B || · sinθ
+- < 
+	A<sub>y</sub>B<sub>z</sub> - A<sub>z</sub>B<sub>y</sub> , 
+	A<sub>z</sub>B<sub>x</sub> - A<sub>x</sub>B<sub>z</sub> , 
+	A<sub>x</sub>B<sub>y</sub> - A<sub>y</sub>B<sub>y</sub> >
+
+### Finding a Vector between 2 Points
+**PQ**: < Q-P >  
+**QP**: < P-Q >
 
 ---
 # 3.13.18 - 3D Shapes
