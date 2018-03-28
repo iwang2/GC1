@@ -15,6 +15,29 @@ DATE | AIM
 3/13 | [3D Shapes](#31318---3d-shapes) ([cube](#box), [sphere](#sphere), [torus](#torus))
 3/20 | [Vector Math](#32018---vector-math-review) ([dot product](#dot-product-a--b), [cross product](#cross-product-a-x-b))
 3/23 | [Rendering 3D Objects](#32318---rendering-3d-objects) ([wireframe](#wireframe-mesh), [polygon](#polygon-mesh))
+3/28 | [Backface Culling](#32818---backface-culling)
+
+---
+# 3.28.18 - Backface Culling
+Only drawing the polygons that are forward-facing.
+
+Given a surface, take the surface normal (**N**), and a vector from the surface to the observer (**V**).  
+The angle between the two will tell us which way the surface is facing. 
+
+### Step 1: Calculate **N**.
+Taking 3 points (a triangle P0, P1, P2), two vectors **A** and **B** point away from the same point.
+- **N** = **A** x **B**
+- **A** = < P<sub>1</sub> - P<sub>0</sub> >
+- **B** = < P<sub>2</sub> - P<sub>0</sub> >
+
+### Step 2: Find θ.
+- **N** · **V** = || **N** || · || **V** || · cosθ
+- **V** = < 0, 0, 1 >
+- **N** = < x, y, z >
+- **N** · **V** = 0 + 0 + z
+
+### Step 3: If `-90° < θ < 90°`, draw.
+Cosine is positive from -90 to 90, so if **N** · **V** > 0, draw. 
 
 ---
 # 3.23.18 - Rendering 3D Objects
