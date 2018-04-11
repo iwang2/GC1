@@ -16,6 +16,35 @@ DATE | AIM
 3/20 | [Vector Math](#32018---vector-math-review) ([dot product](#dot-product-a--b), [cross product](#cross-product-a-x-b))
 3/23 | [Rendering 3D Objects](#32318---rendering-3d-objects) ([wireframe](#wireframe-mesh), [polygon](#polygon-mesh))
 3/28 | [Backface Culling](#32818---backface-culling)
+4/11 | [Relative Coordinate System](#41118---relative-coordinate-system)
+
+---
+# 4.11.18 - Relative Coordinate System
+Currently transformations are applied to all shapes in the polygon/edge matrix.  
+In a RCS, we use transformations to modify the world in which we draw our shapes, rather than the shapes themselves.  
+Each shape can be drawn in a different world.
+
+```
+| 1 0 0 0 |   |  2  0  0  50  |
+| 0 1 0 0 | · |  0  2  0  100 |
+| 0 0 1 0 |   |  0  0  2  0   |
+| 0 0 0 1 |   |  0  0  0  1   |
+     A               B
+```
+
+### Drawing
+1. Generate polygons/edges.
+2. Apply the current coordinate system to these points. 
+3. Draw the polygons/edges to the image. 
+
+#### For Example: Drawing a sphere in the upper right.
+```
+sphere        rotate
+rotate  ===>  move
+move          sphere
+apply
+```
+Everything must be done in reverse.  
 
 ---
 # 3.28.18 - Backface Culling
