@@ -16,29 +16,7 @@ DATE | AIM
 3/20 | [Vector Math](#32018---vector-math-review) ([dot product](#dot-product-a--b), [cross product](#cross-product-a-x-b))
 3/23 | [Rendering 3D Objects](#32318---rendering-3d-objects) ([wireframe](#wireframe-mesh), [polygon](#polygon-mesh))
 3/28 | [Backface Culling](#32818---backface-culling)
-4/11 | [Relative Coordinate System](#41118---relative-coordinate-system)
-4/12 | [Coordinate System Stack](#41218---coordinate-system-stack)
-
----
-# 4.12.18 - Coordinate System Stack
-We will maintain a stack of coordinate systems.  
-The top will always be the most current system.  
-The bottom will always be the identity matrix (the global system).  
-All transformations modify the top, but none of the other matrices.  
-Push will push a **copy** of the top.
-
-transformation · top vs. **top · transformation**
-
-Command | Stack
-:---:| ---
-push | I<br>I
-move | I<br>I · M<sub>1</sub>
-box | ""
-push | M<sub>1</sub> · I<br>M<sub>1</sub> · I<br>I
-move | I·M<sub>1</sub>·M<sub>2</sub><br>I·M<sub>1</sub><br>I
-rotate | I·M<sub>1</sub>·M<sub>2</sub>·R<br>I·M<sub>1</sub><br>I
-sphere | ""
-pop | I·M<sub>1</sub><br>I
+4/11 | [Relative Coordinate System](#41118---relative-coordinate-system) ([CS stack](#coordinate-system-stack))
 
 ---
 # 4.11.18 - Relative Coordinate System
@@ -67,6 +45,26 @@ move          sphere
 apply
 ```
 Everything must be done in reverse.
+
+### Coordinate System Stack
+We will maintain a stack of coordinate systems.  
+The top will always be the most current system.  
+The bottom will always be the identity matrix (the global system).  
+All transformations modify the top, but none of the other matrices.  
+Push will push a **copy** of the top.
+
+transformation · top vs. **top · transformation**
+
+Command | Stack
+:---:| ---
+push | I<br>I
+move | I<br>I · M<sub>1</sub>
+box | ""
+push | M<sub>1</sub> · I<br>M<sub>1</sub> · I<br>I
+move | I·M<sub>1</sub>·M<sub>2</sub><br>I·M<sub>1</sub><br>I
+rotate | I·M<sub>1</sub>·M<sub>2</sub>·R<br>I·M<sub>1</sub><br>I
+sphere | ""
+pop | I·M<sub>1</sub><br>I
 
 ---
 # 3.28.18 - Backface Culling
