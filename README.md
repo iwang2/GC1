@@ -17,6 +17,39 @@ DATE | AIM
 3/23 | [Rendering 3D Objects](#32318---rendering-3d-objects) ([wireframe](#wireframe-mesh), [polygon](#polygon-mesh))
 3/28 | [Backface Culling](#32818---backface-culling)
 4/11 | [Relative Coordinate System](#41118---relative-coordinate-system) ([CS stack](#coordinate-system-stack))
+4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
+
+---
+# 4.17.18 - Filling in Triangles
+Given a triangle, how can we fill in its area?
+1. Fill with smaller and smaller triangles.
+2. Edge line fill (blending an edge to its opposite point; parallel lines to an edge)
+3. Scanline fill
+4. Flood fill (a single point, and plot its adjacent points; recursive)
+
+Things that are good about scanline:
+- no double coverage
+- no weird spacing (horizontal lines only)
+- full coverage
+- takes advantage of the optimized draw_line 
+
+### Scanline Conversion
+Filling in a polygon by drawing consecutive horizontal (or vertical) lines.
+- Need to order vertices vertically for bottom, middle, and top. 
+```
+     top (T)
+       /\
+	    /  \
+	x0 /    \
+    /    __\  middle
+   /__---
+bottom (B)
+```
+- endpoints of each scanline
+- `y` starts at the y-value of the bottom point (Y<sub>B</sub>), and ends at the y of the top point (Y<sub>T</sub>)
+- y++ each time
+- x<sub>0</sub> is on BT (starts at X<sub>B</sub>, ends at X<sub>T</sub>)
+- x<sub>0</sub> += Δsomething
 
 ---
 # 4.11.18 - Relative Coordinate System
