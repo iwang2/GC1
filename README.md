@@ -39,8 +39,8 @@ Filling in a polygon by drawing consecutive horizontal (or vertical) lines.
 ```
      top (T)
        /\
-	    /  \
-	x0 /    \
+      /  \
+  x0 /    \
     /    __\  middle
    /__---
 bottom (B)
