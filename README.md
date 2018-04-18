@@ -35,7 +35,7 @@ Things that are good about scanline:
 
 ### Scanline Conversion
 Filling in a polygon by drawing consecutive horizontal (or vertical) lines.
-- Need to order vertices vertically for bottom, middle, and top. 
+- Need to order vertices vertically for bottom, middle, and top, and find the endpoints of each scanline.  
 ```
      top (T)
        /\
@@ -45,11 +45,28 @@ Filling in a polygon by drawing consecutive horizontal (or vertical) lines.
    /__---
 bottom (B)
 ```
-- endpoints of each scanline
-- `y` starts at the y-value of the bottom point (Y<sub>B</sub>), and ends at the y of the top point (Y<sub>T</sub>)
-- y++ each time
-- x<sub>0</sub> is on BT (starts at X<sub>B</sub>, ends at X<sub>T</sub>)
-- x<sub>0</sub> += Δsomething
+
+Value | Pseudocode / Equivalent
+--- | ---
+y | y<sub>B</sub> -> y<sub>T</sub><br>y++
+x<sub>0</sub> | on the line **BT**<br>x<sub>B</sub> -> x<sub>T</sub><br>x<sub>0</sub> += Δ0
+Δ0 | (x<sub>T</sub> - x<sub>B</sub>) / (y<sub>T</sub> - y<sub>B</sub>)<br>*or*<br>Δx / # of scanlines, aka Δy
+x<sub>1</sub | on the line **BM** until y = y<sub>M</sub>, then on **MT**<br>x<sub>1</sub> += Δ1
+Δ1 | (x<sub>M</sub> - x<sub>B</sub>) / (y<sub>M</sub> - y<sub>B</sub>)<br>*or*<br>(x<sub>T</sub> - x<sub>M</sub>) / (y<sub>T</sub> - y<sub>M</sub>)
+
+### But...
+What happens with a triangle where the middle has the same y-value as the top or bottom point?
+```
+    T
+    /\
+   /  \
+  /    \
+ /______\
+B        M
+```
+Could possibly be dividing by 0, in which case you switch the order you draw each scanline. For example, instead of going from top to bottom, go from bottom to top (or vice versa).
+
+If you flip, make sure to set x = x<sub>M</sub> to ensure that you cover the middle value. 
 
 ---
 # 4.11.18 - Relative Coordinate System
