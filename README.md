@@ -18,6 +18,20 @@ DATE | AIM
 3/28 | [Backface Culling](#32818---backface-culling)
 4/11 | [Relative Coordinate System](#41118---relative-coordinate-system) ([CS stack](#coordinate-system-stack))
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
+4/19 | [Z-Buffering](#41918---z-buffering)
+
+---
+# 4.19.18 - Z-Buffering
+Keeping a separate set of z values corresponding to each point the color grid to draw only the most front-facing side of an object.
+
+**Z-BUFFER:** 2D array of *floating point* values that directly corresponds to the screen
+- check the z-buffer each time before updating the screen
+- initialize each z-value to the smallest possible value
+
+### Functions That Must Be Significantly Modified
+- **`plot`** must check/modify the z-buffer 
+- **`draw_line`** must compute z-values
+- **scanline conversion** must compute z-values
 
 ---
 # 4.17.18 - Filling in Triangles
