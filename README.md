@@ -31,7 +31,7 @@ Keeping a separate set of z values corresponding to each point the color grid to
 ### Functions That Must Be Significantly Modified
 - **`plot`** must check/modify the z-buffer 
 - **`draw_line`** must compute z-values
-- **scanline conversion** must compute z-values
+- **`scanline`** must compute z-values
 
 ---
 # 4.17.18 - Filling in Triangles
