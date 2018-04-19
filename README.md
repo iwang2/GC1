@@ -65,7 +65,7 @@ Value | Pseudocode / Equivalent
 y | y<sub>B</sub> -> y<sub>T</sub><br>y++
 x<sub>0</sub> | on the line **BT**<br>x<sub>B</sub> -> x<sub>T</sub><br>x<sub>0</sub> += Δ0
 Δ0 | (x<sub>T</sub> - x<sub>B</sub>) / (y<sub>T</sub> - y<sub>B</sub>)<br>*or*<br>Δx / # of scanlines, aka Δy
-x<sub>1</sub | on the line **BM** until y = y<sub>M</sub>, then on **MT**<br>x<sub>1</sub> += Δ1
+x<sub>1</sub> | on the line **BM** until y = y<sub>M</sub>, then on **MT**<br>x<sub>1</sub> += Δ1
 Δ1 | (x<sub>M</sub> - x<sub>B</sub>) / (y<sub>M</sub> - y<sub>B</sub>)<br>*or*<br>(x<sub>T</sub> - x<sub>M</sub>) / (y<sub>T</sub> - y<sub>M</sub>)
 
 ### But...
