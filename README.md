@@ -24,7 +24,7 @@ DATE | AIM
 # 4.19.18 - Z-Buffering
 Keeping a separate set of z values corresponding to each point the color grid to draw only the most front-facing side of an object.
 
-**Z-BUFFER:** 2D array of *floating point* values that directly corresponds to the screen
+**Z-BUFFER:** 2D array of *floating point* values that directly correspond to the screen
 - check the z-buffer each time before updating the screen
 - initialize each z-value to the smallest possible value
 
