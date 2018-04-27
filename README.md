@@ -19,12 +19,12 @@ DATE | AIM
 4/11 | [Relative Coordinate System](#41118---relative-coordinate-system) ([CS stack](#coordinate-system-stack))
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
 4/19 | [Z-Buffering](#41918---z-buffering)
-4/26 | [Lighting](#42618---lighting)
+4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
 
 ---
 # 4.26.18 - Lighting
 
-### Colors are modeled based on:
+#### Colors are modeled based on:
 1. Color, intensity, and location of light.
 2. Reflective properties of objects. 
 
@@ -38,6 +38,50 @@ DATE | AIM
 - we will assume the light is from very far away
 - represented by a *color* and *location*
 
+## Phong Reflection Model
+Models real world reflections by breaking them into 3 parts.  
+I (color, normalization) = ambient + diffuse + specular  
+- diffuse and specular are point light
+
+*I = A·K<sub>a</sub> + P·K<sub>d</sub>·(**N** · **L**)*
+
+### Ambient Light
+- A - Ambient Light (0->255)
+- K<sub>a</sub> - constant of ambient reflection(0->1)
+- Ambient light = A·K<sub>a</sub>
+
+### Diffuse Reflection
+Reflection of a point light source. 
+Reflected evenly in all directions. These are things that have a matte/dull finish.
+#### Some important things
+- P - color of point light source
+- K<sub>d</sub> - constant of diffuse reflection
+```
+ L    N
+  \   |
+   \  |
+    \θ|
+_____\|______
+```
+We can model the strength of the reflection with cosθ.
+- cosθ = **N** · **L**
+- diffuse = P · K<sub>d</sub> · (**N** · **L**)
+
+### Specular Reflection
+Reflects a point light source in a specific direction (shiny/glossy surfaces).
+```
+ L    N    R
+  \_R_|_S_/   idk how to diagram it, but there is also another 
+   \  T  /    view vector V between N and the x-axis. 
+    \θ|θ/     the angle between V and R is α
+_____\|/______
+```
+- P - color of point light
+- K<sub>s</sub> - constant of specular reflection
+- R = T + S
+- S = T - L
+- R = 2T - L
+
 ---
 # 4.19.18 - Z-Buffering
 Keeping a separate set of z values corresponding to each point the color grid to draw only the most front-facing side of an object.
@@ -50,23 +94,6 @@ Keeping a separate set of z values corresponding to each point the color grid to
 - **`plot`** must check/modify the z-buffer 
 - **`draw_line`** must compute z-values
 - **`scanline`** must compute z-values
-
-### Phong Reflection Model
-Mlodels real world reflections by breaking them into 3 parts.
-- Ambient, Diffuse, spectacular
-
-I = ambient + diffuse + specular  
-I: color, normalization
-- diffuse and specular are point light
-
-### Ambient Light
-A: Ambient Light (0->255)
-K<sub>a</sub>: constatnt of ambient reflection(0->1)
-Ambient = AK<sub>a</sub>
-
-### Diffuse Reflection
-Relfection of a point ight source. 
-Reflected evenly in all directions. Things that have a matte/dull finish.
 
 ---
 # 4.17.18 - Filling in Triangles
