@@ -19,7 +19,7 @@ DATE | AIM
 4/11 | [Relative Coordinate System](#41118---relative-coordinate-system) ([CS stack](#coordinate-system-stack))
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
 4/19 | [Z-Buffering](#41918---z-buffering)
-4/26 | [Lighting]
+4/26 | [Lighting](#42618---lighting)
 
 ---
 # 4.26.18 - Lighting
@@ -30,7 +30,7 @@ DATE | AIM
 
 ### Types of Light
 **Ambient Light:** general lighting of an image
-- so single source - comes from all locations equally
+- a single source - comes from all locations equally
 - represented by a normal color value
 
 **Point Light:** comes from a specific location
