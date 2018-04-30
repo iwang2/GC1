@@ -43,7 +43,7 @@ Models real world reflections by breaking them into 3 parts.
 I (color, normalization) = ambient + diffuse + specular  
 - diffuse and specular are point light
 
-*I = A·K<sub>a</sub> + P·K<sub>d</sub>·(**N** · **L**)*
+*I = A·K<sub>a</sub> + P·K<sub>d</sub> · (**N** · **L**)*
 
 ### Ambient Light
 - A - Ambient Light (0->255)
@@ -77,19 +77,19 @@ Reflects a point light source in a specific direction (shiny/glossy surfaces).
     \θ|θ/
 _____\|/______
 ```
+
 - P - color of point light
 - K<sub>s</sub> - constant of specular reflection
-- R = T + S
-- S = T - L
-- R = 2T - L
 
-- cosα = R · V
-- R = 2T - L
-- T = (N·C)·N
-- R = 2(N·L)·N - L
-
-- cosα = R · V
-  = (2(N·L)·N - L) · V
+Component | Value
+:---:| ---
+R | T + S
+S | T - L
+R | 2T - L
+cosα | R · V
+T | (N·C) · N
+R | 2(N·L)·N - L
+cosα | (2(N·L)·N - L) · V
   
 ```
         L
@@ -104,7 +104,8 @@ _____\|/______
 - cosθ = ||T|| (L is a normalized vector)
 - N · L = ||T||
 
-**Specular** = P · K<sub>s</sub> · [(2(N·L)·N - L) · V]
+**Specular** = P · K<sub>s</sub> · [(2(N·L)·N - L) · V]<sup>x</sup>  
+power of x is to simulate a narrow reflection
 
 ---
 # 4.19.18 - Z-Buffering
