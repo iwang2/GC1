@@ -71,9 +71,10 @@ We can model the strength of the reflection with cosθ.
 Reflects a point light source in a specific direction (shiny/glossy surfaces).
 ```
  L    N    R
-  \_R_|_S_/   idk how to diagram it, but there is also another 
-   \  T  /    view vector V between N and the x-axis. 
-    \θ|θ/     the angle between V and R is α
+ \_R__|__S_/   idk how to diagram it, but there is also another 
+  \   T   /    view vector V between N and the x-axis.
+   \  |  /     the angle between V and R is α
+    \θ|θ/
 _____\|/______
 ```
 - P - color of point light
@@ -81,6 +82,29 @@ _____\|/______
 - R = T + S
 - S = T - L
 - R = 2T - L
+
+- cosα = R · V
+- R = 2T - L
+- T = (N·C)·N
+- R = 2(N·L)·N - L
+
+- cosα = R · V
+  = (2(N·L)·N - L) · V
+  
+```
+        L
+       /.
+||L|| / .
+     /  .
+    /   .
+   /θ___._N
+   ||T||
+```
+- cosθ = ||T|| / ||L||
+- cosθ = ||T|| (L is a normalized vector)
+- N · L = ||T||
+
+**Specular** = P · K<sub>s</sub> · [(2(N·L)·N - L) · V]
 
 ---
 # 4.19.18 - Z-Buffering
