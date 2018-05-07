@@ -20,6 +20,44 @@ DATE | AIM
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
 4/19 | [Z-Buffering](#41918---z-buffering)
 4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
+5/7 | [Compilers](#5718---compilers)
+
+---
+# 5.7.18 - Compilers
+```
+source code --------------------------> image(s)  
+source code ---------compiler---------> executeable code
+    |                                            ^
+	  v                                            |
+lexer -> syntatic -> symantic -> optimizer* ->  code
+         analyzer    analyzer                 generator
+```
+
+### Lexer
+Performs lexical analysis. "Knows" all the valid tokens in a language.
+- String literals
+- operators
+- formatting characters (semicolons, parentheses, brackets)
+- keywords (if, else)
+- numeric literals
+- identifiers (function names, variables)
+
+Reads in source code and outputs a token list.
+
+The types of errors a lexer will catch: bad character formatting, weird variable names (i.e. fro?)  
+Basically it only catches invalid tokens (NOT improper formatting).
+
+Example Token List:
+```
+int
+main
+(
+)
+{
+long
+x
+=
+```
 
 ---
 # 4.26.18 - Lighting
