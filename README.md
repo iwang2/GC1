@@ -28,7 +28,7 @@ DATE | AIM
 source code --------------------------> image(s)  
 source code ---------compiler---------> executeable code
     |                                            ^
-	  v                                            |
+    v                                            |
 lexer -> syntatic -> symantic -> optimizer* ->  code
          analyzer    analyzer                 generator
 ```
