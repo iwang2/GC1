@@ -20,7 +20,7 @@ DATE | AIM
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
 4/19 | [Z-Buffering](#41918---z-buffering)
 4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
-5/7 | [Compilers](#5718---compilers)
+5/7 | [Compilers](#5718---compilers) ([lexer](#lexer), [parser](#parser))
 
 ---
 # 5.7.18 - Compilers
@@ -32,6 +32,12 @@ source code ---------compiler---------> executeable code
 lexer -> syntatic -> symantic -> optimizer* ->  code
          analyzer    analyzer                 generator
 ```
+### Compiler Parts
+Name | Input | Output
+--- | --- | ---
+lexer | source code (text) | token list
+parser | token list | syntax tree
+symantic analyzer | syntax tree |
 
 ### Lexer
 Performs lexical analysis. "Knows" all the valid tokens in a language.
@@ -47,7 +53,16 @@ Reads in source code and outputs a token list.
 The types of errors a lexer will catch: bad character formatting, weird variable names (i.e. fro?)  
 Basically it only catches invalid tokens (NOT improper formatting).
 
-Example Token List:
+Sample Code:
+```c
+int main() {
+  long x = 5 + 6;
+  printf("%d", x);
+  return x;
+}
+```
+
+Sample Token List:
 ```
 int
 main
@@ -57,7 +72,35 @@ main
 long
 x
 =
+5
++
+6
+;
+...
 ```
+#### Tools
+- C: lex, flex (free lex)
+- java:
+
+### Parser
+Performs syntax analysis, and checks the token list against the defined structure of the language.  
+Output is a syntax tree.
+
+If the lexer checks for words, the parser checks for grammar.
+
+Sample Syntax Tree:
+```
+               int main
+       ____________|_____________
+       =         printf      return
+_______|___   _____|___        _|_
+long x    +   "%d"    x         x
+       ___|___
+       5     6
+```
+#### Tools
+- C: yacc (yet another compiler compiler), bison
+- java: javacc
 
 ---
 # 4.26.18 - Lighting
