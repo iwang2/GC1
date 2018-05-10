@@ -20,7 +20,7 @@ DATE | AIM
 4/17 | [Filling in Triangles](#41718---filling-in-triangles) ([scanline conversion](#scanline-conversion))
 4/19 | [Z-Buffering](#41918---z-buffering)
 4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
-5/7 | [Compilers](#5718---compilers) ([lexer](#lexer), [parser](#parser))
+5/7 | [Compilers](#5718---compilers) ([lexer](#lexer), [parser](#parser), [semantic analyzer](#semantic-analyzer))
 
 ---
 # 5.7.18 - Compilers
@@ -29,7 +29,7 @@ source code --------------------------> image(s)
 source code ---------compiler---------> executeable code
     |                                            ^
     v                                            |
-lexer -> syntatic -> symantic -> optimizer* ->  code
+lexer -> syntatic -> semantic -> optimizer* ->  code
          analyzer    analyzer                 generator
 ```
 ### Compiler Parts
@@ -37,7 +37,7 @@ Name | Input | Output
 --- | --- | ---
 lexer | source code (text) | token list
 parser | token list | syntax tree
-symantic analyzer | syntax tree |
+semantic analyzer | syntax tree |
 
 ### Lexer
 Performs lexical analysis. "Knows" all the valid tokens in a language.
@@ -101,6 +101,30 @@ long x    +   "%d"    x         x
 #### Tools
 - C: yacc (yet another compiler compiler), bison
 - java: javacc
+
+### Semantic Analyzer
+Evaluates the syntax tree and creates an operation list and symbol table (stores identifiers and associated information).  
+If the languaged is typed, type-checking will occur here.  
+The semantic analyzer does NOT evaluated expressions.
+
+#### Tree Traversal Types
+- post: L -> R -> M
+- pre: M -> L -> R
+- in: L -> M -> R
+
+#### Operation List
+Number | Operation | Arguments
+--- | --- | ---
+0 | + | 5 , 6
+1 | = | x , (0)
+2 | return | x
+
+#### Symbol Table
+Symbol | Category | Type?
+--- | --- | ---
+main | function | int
+x | value | long
+printf | function | int
 
 ---
 # 4.26.18 - Lighting
@@ -473,37 +497,4 @@ Rt moves along the line R0, R1.
 R0 moves along the quadratic Q0, Q1.  
 R1 moves along the quadratc Q1, Q2.
 
-#### R<sub>t</sub>
-= (1 - t) · R<sub>0</sub> + t · R<sub>1</sub>  
-= (1 - t)<sup>2</sup> · P<sub>0</sub> + 3t · (1 - t)<sup>2</sup> · P<sub>1</sub> + 3 · t<sup>2</sup> · (1 - t) · P<sub>2</sub> + t<sup>3</sup> · P<sub>3</sub>  
-= ( -P<sub>0</sub> + 3P<sub>1</sub> - 3P<sub>2</sub> + P<sub>3</sub> ) t<sup>3</sup> + ( 3P<sub>0</sub> - 6P<sub>1</sub> + 3P<sub>2</sub> ) t<sup>2</sup> + ( -3P<sub>0</sub> + 3P<sub>1</sub> ) t + P<sub>0</sub>
-
-#### a·t<sup>3</sup> + b·t<sup>2</sup> + c·t + d
-- a = -P<sub>0</sub> + 3P<sub>1</sub> - 3P<sub>2</sub> + P<sub>3</sub>
-- b = 3P<sub>0</sub> - 6P<sub>1</sub> + 3P<sub>2</sub>
-- c = -3P<sub>0</sub> + 3P<sub>1</sub>
-- d = 3P<sub>2</sub>
-
-```
-| -1  3 -3  1 |   | P0 |   | a |
-|  3 -6  3  0 |   | P1 |   | b |
-| -3  3  0  0 | · | P2 | = | c |
-|  1  0  0  0 |   | P3 |   | d |
-```
-
----
-# 3.6.18 - Hermite Curves
-
-### Splines
-Curves that can be combined smoothly.  
-We will only draw cubics, and combine them to form these curves.
-
-for t: 0->1, t += step
-- x = a<sub>x</sub> · t<sup>3</sup> + b<sub>x</sub> · t<sup>2</sup> + c · t + d<sub>x</sub>
-- y = a<sub>y</sub> · t<sup>3</sup> + b<sub>y</sub> · t<sup>2</sup> + c · t + d<sub>y</sub>
-
-### Given Information
-- endpoints: P<sub>0</sub>, P<sub>1</sub>
-- rate of change at each endpoint: R<sub>0</sub>, R<sub>1</sub>
-- points on curve: f(t) = a · t<sup>3</sup> + b · t<sup>2</sup> + c · t + d
-- rates of change: f'(t) = 3a · t<sup>2</sup> + 2b · t + c
+#### R
