@@ -37,7 +37,9 @@ Name | Input | Output
 --- | --- | ---
 lexer | source code (text) | token list
 parser | token list | syntax tree
-semantic analyzer | syntax tree |
+semantic analyzer | syntax tree | operations list and symbol table
+optimizer | operations list | optimized operations list
+code generator | optimized operations list and symbol table | binary executeable
 
 ### Lexer
 Performs lexical analysis. "Knows" all the valid tokens in a language.
@@ -125,6 +127,26 @@ Symbol | Category | Type?
 main | function | int
 x | value | long
 printf | function | int
+
+### Optimizer
+Runs through operations list and may replace functions in code to make it run faster.
+
+For example: `if ( x != 0 )` may turn into `if ( x )`, and `if ( 1 )` may be removed completely.
+
+We aren't making an optimizer, so this doesn't really matter.
+
+### Code Generator
+Rather self-explanatory.
+Translates the operation list into binary assembly code.
+
+### Applying this to our graphics engine
+```
+image script -> token list -> syntax tree -> operations list -> image
+                                              symbol table
+```
+#### Code Generator
+- call image
+- creation/manipulation functions
 
 ---
 # 4.26.18 - Lighting
