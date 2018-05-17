@@ -21,6 +21,47 @@ DATE | AIM
 4/19 | [Z-Buffering](#41918---z-buffering)
 4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
 5/7 | [Compilers](#5718---compilers) ([lexer](#lexer), [parser](#parser), [semantic analyzer](#semantic-analyzer))
+5/17 | [Animation](#51718---animation)
+
+---
+# 5.17.18 - Animation
+Generate multiple images in a sequence with small changes between each image.  
+We will apply transformations over time.
+```
+move 400 0 0
+sphere 40 50 0 50
+ __________                                                      __________
+|          |                                                    |          |
+|o         | -------------------------------------------------> |         o|
+|__________|                                                    |__________|
+ __________      __________      __________      __________      __________
+|          |    |          |    |          |    |          |    |          |
+|o         | -> |  o       | -> |     o    | -> |       o  | -> |         o|
+|__________|    |__________|    |__________|    |__________|    |__________|
+     0%              25%             50%            75%             100%
+```
+
+### Knobs
+These are applied to objects, not transformations.
+
+```
+move 400 0 0 0.00 |
+     400 0 0 0.25 |
+     400 0 0 0.50 | knob
+     400 0 0 0.75 |
+     400 0 0 1.00 |
+		 
+move 400 0 0 m0
+```
+
+#### `vary`
+Command that defines knob behavior.
+
+knob | start frame | end frame | start value | end value
+:---:|:---:|:---:|:---:|:---:
+m0 | 0 | 4 | 0 | 1
+
+**Number of frames:** 5
 
 ---
 # 5.7.18 - Compilers
