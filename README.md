@@ -54,14 +54,28 @@ move 400 0 0 0.00 |
 move 400 0 0 m0
 ```
 
-#### `vary`
-Command that defines knob behavior.
+### Commands
 
-knob | start frame | end frame | start value | end value
-:---:|:---:|:---:|:---:|:---:
-m0 | 0 | 4 | 0 | 1
+Function | Definition | Example
+--- | --- | ---
+**`vary`** knob, start frame, end frame, start value, end value | compute and store the knob values for each frame | `vary m0, 0, 4, 0 1`
+**`frames`** number of frames | defines number of frames in animation | `frames 5`
+**`basename`** name | gif name | basename rolling
+**`-delay`** `N` | delays animation by N/100 seconds between frames | `convert -delay 10`
+`transformation args` **`[knob]`** | if there is a knob, look up its value in the symbol table and modify args by it | 
 
-**Number of frames:** 5
+### 3-Pass Animation Framework
+1. Setup
+	- Set frames if frame command is present. 
+	- set basename if basename command is present
+	- stop if `vary` is present but not `frames`2. 
+2. Vary - compiler errors
+	- compute and store all knob values for every frame
+	- stop if vary range is invalid
+3. Draw
+	- repeat loop for each frame
+	- update the knobs in the symbol table
+	- at the end of each loop, save the current frame
 
 ---
 # 5.7.18 - Compilers
