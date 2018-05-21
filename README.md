@@ -62,7 +62,7 @@ Function | Definition | Example
 **`frames`** number of frames | defines number of frames in animation | `frames 5`
 **`basename`** name | gif name | basename rolling
 **`-delay`** `N` | delays animation by N/100 seconds between frames | `convert -delay 10`
-`transformation args` **`[knob]`** | if there is a knob, look up its value in the symbol table and modify args by it | 
+`transformation args` **`[knob]`** | if there is a knob, look up its value in the symbol table and modify args by it | `move x y z m0`
 
 ### 3-Pass Animation Framework
 1. Setup
@@ -74,8 +74,47 @@ Function | Definition | Example
 	- stop if vary range is invalid
 3. Draw
 	- repeat loop for each frame
-	- update the knobs in the symbol table
+	- update the knobs in the symbol table at the beginning of each loop
 	- at the end of each loop, save the current frame
+	- once the loop ends, stitch the frames together
+
+### `vary` - Structure for Storing Knob Values
+```
+knob       frames
+ __    __ __ __ __ __
+|m0|  |_1|_2|_3|_4|_5|
+|__|
+|__|
+|__|
+|__|
+```
+```
+frames
+ __
+|_0| -> m0, 0 -> m1, 2.5
+|_1|
+|_2|
+|_3|
+|_4|
+```
+Organization may depend on the type of language used, but Mr. DW recommends frame major.  
+In C, an array of linked lists. 
+
+#### How do you deal with missing knob values?
+```
+     k
+vary | 0 3 0 .5
+vary | 4 6 .5 .8
+vary | 9 11 .8 1
+```
+There is no value for 7 and 8. 
+```
+ ___ ___ ___ ___ ___ ___
+|.5_|.65|.8_|_?_|_?_|.8_|
+  4   5   6   7   8   9
+```
+You don't deal with it at all, throw a compiler warning instead and let the programmer deal with it.  
+Or you can default to 0, because that error should be easily seen in the animation.
 
 ---
 # 5.7.18 - Compilers
