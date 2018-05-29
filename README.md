@@ -20,6 +20,69 @@ DATE | AIM
 4/26 | [Lighting](#42618---lighting) ([Phong reflection model](#phong-reflection-model))
 5/7 | [Compilers](#5718---compilers) ([lexer](#lexer), [parser](#parser), [semantic analyzer](#semantic-analyzer))
 5/17 | [Animation](#51718---animation)
+5/29 | [Shading Models](#52918---shading-models) ([flat](#flat-shading), [Gourand](#gourand-shading))
+
+---
+# 5.29.18 - Shading Models
+How and when you calculate the color (*I*) for each shape. 
+
+### Flat Shading
+Calculating *I* once per polygon (what we have right now).
+
+### Gourand Shading
+Calculate *I* for each vertex of the polygon.  
+Interpolate *I* in scanline conversion and draw_line.
+```
+      /| It
+     / |
+ I0./__|.I1
+   /   |
+Im \   |
+    \  |
+     \ |
+      \| Ib
+```
+
+### Phong Shading Model
+Calculate *I* once per pixel.  
+Instead of having 3 different values for *I* at each vertex (Gourand), have 3 different normal values at each vertex.  
+Interpolate the surface normal in scanline conversion and draw_line. 
+```
+      /| Nt
+     / |
+ N0./__|.N1
+   /   |
+Nm \   |
+    \  |
+     \ |
+      \| Nb
+```
+
+### Calculating Normals for Gourand and Phong 
+```
+  v0
+  |\
+  | \
+A |  \ B
+  |   \
+  |____\
+v1   C   v2
+```
+The way we calculate normals now, all 3 values at each vertex would be the same. 
+```
+   _____
+  |\    |
+  | \ A |
+  |  \  |
+  | B \ |
+  |____\|
+  |\    |
+  | \ C |
+  |  \  |
+  | D \ |
+  |____\|
+```
+Vertex normals will instead be the combined value of all surface normals for polygons that share a commmon vertex. 
 
 ---
 # 5.17.18 - Animation
